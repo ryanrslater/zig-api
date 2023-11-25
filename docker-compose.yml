@@ -1,0 +1,18 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    depends_on:
+      - web
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_DB: yourdb
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
